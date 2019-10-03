@@ -1,0 +1,27 @@
+group 'Administrators' do
+  members ['domain\foo']
+  append true
+  action :modify
+end
+
+
+perl 'hello world' do
+  code <<-EOH
+    print "Hello world! From Chef and Perl.";
+    EOH
+end
+
+
+script 'install_something' do
+  interpreter 'bash'
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
+  wget http://www.example.com/tarball.tar.gz
+  tar -zxf tarball.tar.gz
+  cd tarball
+  ./configure
+  make
+  make install
+  EOH
+end
